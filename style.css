@@ -1,19 +1,20 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #f0f2f5; /* Mantenemos el color de fondo */
     margin: 0;
 }
 .container {
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    /* Usamos 'dvh' para altura dinámica, se adapta mejor a los navegadores móviles */
+    height: 100dvh; 
     background: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* Box-sizing asegura que el padding no cause un desbordamiento */
+    box-sizing: border-box; 
+    /* Hacemos el contenedor un flexbox para organizar su contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el formulario verticalmente dentro del contenedor */
 }
 .screen {
     display: none;
@@ -56,4 +57,5 @@ input {
 }
 .button-group .btn {
     flex-grow: 2;
+
 }
