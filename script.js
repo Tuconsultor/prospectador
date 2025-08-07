@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             correo: document.getElementById('correo').value,
             producto: document.getElementById('producto').value,
             adquisicion: document.getElementById('adquisicion').value,
+            comentarios: document.getElementById('comentarios').value
         };
 
         // 1. Guardar Localmente
@@ -95,4 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js').then(() => console.log('Service Worker Registrado'));
     }
+
 });
