@@ -97,7 +97,7 @@ body::before {
     min-height: 100vh;
     min-height: 100dvh;
     background: transparent;
-    padding: 0; /* AJUSTE 1: Eliminado el padding para que el contenido llegue a los bordes */
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -107,13 +107,10 @@ body::before {
 
 /* Contenedor de la tarjeta principal */
 .screen {
-    display: none;
+    display: none; /* CORRECCIÓN: Esta es la única propiedad 'display' que debe estar aquí. */
     width: 100%;
-    height: 100%; /* Añadido para que ocupe la altura del contenedor */
-    display: flex; /* Añadido para centrar su propio contenido */
-    flex-direction: column; /* Añadido */
-    justify-content: center; /* Añadido */
-    padding: var(--spacing-2xl); /* Mantenemos el padding aquí para que el contenido no toque los bordes */
+    height: 100%;
+    padding: var(--spacing-2xl);
     background: var(--bg-card);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -121,9 +118,6 @@ body::before {
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
-    /* AJUSTE 2: Eliminadas las propiedades que lo limitaban */
-    /* max-width: 420px; <-- Eliminado */
-    /* border-radius: var(--border-radius-lg); <-- Eliminado */
 }
 
 /* Efecto de brillo sutil en la tarjeta */
@@ -138,8 +132,9 @@ body::before {
 }
 
 .screen.active {
-    display: flex;
+    display: flex; /* CORRECCIÓN: Las propiedades para mostrar y centrar se mueven aquí. */
     flex-direction: column;
+    justify-content: center;
     gap: var(--spacing-lg);
     animation: slideIn 0.6s ease-out;
 }
@@ -156,7 +151,7 @@ body::before {
 }
 
 /* Estilos de inputs modernos */
-input, textarea { /* Añadido textarea aquí */
+input, textarea {
     width: 100%;
     padding: var(--spacing-lg);
     font-size: var(--font-size-lg);
@@ -174,23 +169,23 @@ input, textarea { /* Añadido textarea aquí */
 
 /* Estilo específico para textarea */
 textarea {
-    min-height: 120px; /* Altura mínima para comentarios */
-    resize: vertical; /* Permite al usuario ajustar la altura */
+    min-height: 120px;
+    resize: vertical;
 }
 
-input::placeholder, textarea::placeholder { /* Añadido textarea aquí */
+input::placeholder, textarea::placeholder {
     color: var(--text-muted);
     font-weight: var(--font-weight-normal);
 }
 
-input:focus, textarea:focus { /* Añadido textarea aquí */
+input:focus, textarea:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), var(--shadow-glow);
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-1px);
 }
 
-input:hover:not(:focus), textarea:hover:not(:focus) { /* Añadido textarea aquí */
+input:hover:not(:focus), textarea:hover:not(:focus) {
     border-color: rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
 }
