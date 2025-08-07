@@ -1,61 +1,389 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5; /* Mantenemos el color de fondo */
-    margin: 0;
+/* CSS Mejorado - Diseño Moderno y Tecnológico */
+
+/* Variables CSS para consistencia y mantenibilidad */
+:root {
+    /* Paleta de colores moderna y tecnológica */
+    --primary-color: #6366f1; /* Indigo moderno */
+    --primary-hover: #4f46e5;
+    --primary-light: #a5b4fc;
+    --secondary-color: #64748b; /* Slate gris */
+    --secondary-hover: #475569;
+    --accent-color: #06b6d4; /* Cyan tecnológico */
+    
+    /* Colores de fondo con gradientes sutiles */
+    --bg-primary: #0f172a; /* Dark slate */
+    --bg-secondary: #1e293b;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-input: rgba(255, 255, 255, 0.08);
+    
+    /* Colores de texto */
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    
+    /* Sombras modernas */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    
+    /* Bordes y radios */
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    --border-color: rgba(255, 255, 255, 0.1);
+    
+    /* Espaciado consistente */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Tipografía moderna */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Transiciones suaves */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s ease-out;
+    --transition-slow: 0.5s ease-out;
 }
+
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Efecto de partículas de fondo sutil */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
 .container {
     width: 100%;
-    /* Usamos 'dvh' para altura dinámica, se adapta mejor a los navegadores móviles */
-    height: 100dvh; 
-    background: white;
-    padding: 20px;
-    /* Box-sizing asegura que el padding no cause un desbordamiento */
-    box-sizing: border-box; 
-    /* Hacemos el contenedor un flexbox para organizar su contenido */
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: transparent;
+    padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el formulario verticalmente dentro del contenedor */
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+/* Contenedor de la tarjeta principal */
 .screen {
     display: none;
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
+
+/* Efecto de brillo sutil en la tarjeta */
+.screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
 .screen.active {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--spacing-lg);
+    animation: slideIn 0.6s ease-out;
 }
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos de inputs modernos */
 input {
     width: 100%;
-    padding: 18px;
-    font-size: 1.2em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+    outline: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
+
+input::placeholder {
+    color: var(--text-muted);
+    font-weight: var(--font-weight-normal);
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), var(--shadow-glow);
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+input:hover:not(:focus) {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Botones modernos con efectos avanzados */
 .btn, .btn-secondary {
-    padding: 18px;
-    font-size: 1.2em;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: bold;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    text-transform: none;
+    letter-spacing: 0.025em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    outline: none;
 }
+
+/* Botón primario con gradiente y efectos */
 .btn {
-    background-color: #007bff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     color: white;
+    box-shadow: var(--shadow-md);
 }
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    background: linear-gradient(135deg, var(--primary-hover) 0%, var(--accent-color) 100%);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: translateY(0);
+    transition: transform var(--transition-fast);
+}
+
+/* Botón secundario */
 .btn-secondary {
-    background-color: #6c757d;
-    color: white;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+    transition: transform var(--transition-fast);
+}
+
+/* Grupo de botones con espaciado mejorado */
 .button-group {
     display: flex;
-    gap: 10px;
+    gap: var(--spacing-md);
+    width: 100%;
 }
-.button-group .btn-secondary {
-    flex-grow: 1;
-}
-.button-group .btn {
-    flex-grow: 2;
 
+.button-group .btn-secondary {
+    flex: 1;
 }
+
+.button-group .btn {
+    flex: 2;
+}
+
+/* Estados de carga y disabled */
+.btn:disabled, .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn:disabled:hover, .btn-secondary:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsividad mejorada */
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .screen {
+        max-width: 100%;
+        padding: var(--spacing-xl);
+        border-radius: var(--border-radius);
+    }
+    
+    input, .btn, .btn-secondary {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 48px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .button-group .btn-secondary,
+    .button-group .btn {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: var(--spacing-sm);
+    }
+    
+    .screen {
+        padding: var(--spacing-lg);
+    }
+    
+    input, .btn, .btn-secondary {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+        min-height: 44px;
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #f1f5f9;
+        --bg-card: rgba(255, 255, 255, 0.8);
+        --bg-input: rgba(255, 255, 255, 0.9);
+        --text-primary: #0f172a;
+        --text-secondary: #334155;
+        --text-muted: #64748b;
+        --border-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    body::before {
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    }
+}
+
+/* Efectos adicionales para interactividad */
+.screen:hover {
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(99, 102, 241, 0.1);
+    transition: box-shadow var(--transition-normal);
+}
+
+/* Animación de entrada para elementos */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen.active > * {
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.screen.active > *:nth-child(1) { animation-delay: 0.1s; }
+.screen.active > *:nth-child(2) { animation-delay: 0.2s; }
+.screen.active > *:nth-child(3) { animation-delay: 0.3s; }
+.screen.active > *:nth-child(4) { animation-delay: 0.4s; }
