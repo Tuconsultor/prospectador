@@ -1,0 +1,15 @@
+{
+  "name": "prospectador-faw",
+  "version": "1.0.0",
+  "description": "Lead capture app for FAW",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-spreadsheet": "^4.1.1"
+  }
+}
